@@ -1,3 +1,3 @@
-import Register from "./components/authorization/Authorization";
+import Authorization from "./components/authorization/Authorization";
 
-export { Register };
+export { Authorization };

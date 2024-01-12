@@ -28,7 +28,7 @@ const Menu: React.FC = () => {
         />
         <ul>
           <li className="menu-link">
-            <h1 data-name="start"><Link to="/register">start</Link></h1>
+            <h1 data-name="start"><Link to="/authorization">start</Link></h1>
           </li>
           <li className="menu-link">
             <h1 data-name="profile"><Link to="/profile">profile</Link></h1>

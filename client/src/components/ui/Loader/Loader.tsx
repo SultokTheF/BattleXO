@@ -8,14 +8,14 @@ const Loader: React.FC = () => {
         <svg className="pl" viewBox="0 0 128 128" width="128px" height="128px">
           <defs>
             <linearGradient id="pl-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#000" />
-              <stop offset="100%" stop-color="#fff" />
+              <stop offset="0%" stopColor="#000" />
+              <stop offset="100%" stopColor="#fff" />
             </linearGradient>
             <mask id="pl-mask">
               <rect x="0" y="0" width="128" height="128" fill="url(#pl-grad)" />
             </mask>
           </defs>
-          <g stroke-linecap="round" stroke-width="8" stroke-dasharray="32 32">
+          <g strokeLinecap="round" strokeWidth="8" strokeDasharray="32 32">
             <g stroke="#2C74B3">
               <line className="pl__line1" x1="4" y1="48" x2="4" y2="80" />
               <line className="pl__line2" x1="19" y1="48" x2="19" y2="80" />

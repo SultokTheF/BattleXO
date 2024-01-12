@@ -1,10 +1,15 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState ,useEffect, FormEvent } from "react";
+import axios from "axios"
+
 import "./Authorization.css";
+
+import User from "../../../../types/User";
+import { loginEndpoint, registerEndpoint } from "../../../../store/endpoints";
 
 import logo from "../../../../assets/images/BattleXO_Logo.png";
 import logo_on_hover from "../../../../assets/images/BattleXO_Logo_On_Hover.png";
 
-const Register: React.FC = () => {
+const Authorization: React.FC = () => {
   useEffect(() => {
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
@@ -44,6 +49,59 @@ const Register: React.FC = () => {
     setIsHovered(false);
   };
 
+  const [userData, setUserData] = useState<(User & {password: string})>({
+    username: "",
+    email: "",
+    role: "user",
+    user_level: 1,
+    password: ""
+  });
+
+  const handleRegister = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(registerEndpoint, userData);
+
+      if (response.status === 201) {
+        setUserData({
+          username: "",
+          email: "",
+          role: "user",
+          user_level: 1,
+          password: ""
+        });
+
+        alert("Registration successful");
+      } else {
+        // Handle registration error
+        alert("Registration failed")
+      }
+    } catch (e) {
+      return console.error("Error:", e);
+    }
+  };
+
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(loginEndpoint, userData);
+
+      if (response.status === 200) {
+        const accessToken = response.data.access;
+        localStorage.setItem("accessToken", accessToken);
+        // You can redirect the user or perform other actions here
+        alert("Login successful")
+      } else {
+        // Handle authentication error
+        alert("Authentication failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
+
   return (
     <>
       <div className="authorization flex">
@@ -57,7 +115,7 @@ const Register: React.FC = () => {
         </a>
         <div className="container" id="container">
           <div className="form-container sign-up-container">
-            <form action="#">
+            <form onSubmit={handleRegister}>
               <h1 className="active">Create Account</h1>
               <div className="social-container">
                 <button type="button" className="login-with-google-btn" >
@@ -65,14 +123,29 @@ const Register: React.FC = () => {
                 </button>
               </div>
               <span>or use your email for registration</span>
-              <input type="text" placeholder="Name" />
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
+              <input 
+                type="text" 
+                placeholder="username"
+                value={userData.username}
+                onChange={(e) => setUserData({ ...userData, username: e.target.value })}
+              />
+              <input 
+                type="email" 
+                placeholder="Email" 
+                value={userData.email}
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+              />
+              <input 
+                type="password" 
+                placeholder="Password" 
+                value={userData.password}
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
+              />
               <button>Sign Up</button>
             </form>
           </div>
           <div className="form-container sign-in-container">
-            <form action="#">
+            <form onSubmit={handleLogin}>
               <h1 className="active">Sign in</h1>
               <div className="social-container">
                 <button type="button" className="login-with-google-btn" >
@@ -80,8 +153,18 @@ const Register: React.FC = () => {
                 </button>
               </div>
               <span>or use your account</span>
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
+              <input 
+                type="email" 
+                placeholder="Email" 
+                value={userData.email}
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+              />
+              <input 
+                type="password" 
+                placeholder="Password"
+                value={userData.password}
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
+              />
               <a href="#">Forgot your password?</a>
               <button>Login</button>
             </form>
@@ -106,4 +189,4 @@ const Register: React.FC = () => {
   );
 }
 
-export default Register;
+export default Authorization;

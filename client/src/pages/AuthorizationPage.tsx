@@ -1,10 +1,10 @@
 import React from "react";
-import { Register } from "../modules/authorization";
+import { Authorization } from "../modules/authorization";
 import { Loader } from "../components/ui";
 
 import useDelayedLoading from "../helpers/useDelayedLoading";
 
-const RegisterPage: React.FC = () => {
+const AuthorizationPage: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
 
   return (
@@ -13,11 +13,11 @@ const RegisterPage: React.FC = () => {
           <Loader/>
       ) : (
         <>
-          <Register/>
+          <Authorization/>
         </>
       )}
     </>
   );
 }
 
-export default RegisterPage;
+export default AuthorizationPage;

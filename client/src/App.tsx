@@ -8,10 +8,10 @@ import { Loader } from "./components/ui";
 import useDelayedLoading from './helpers/useDelayedLoading';
 
 // Pages 
-const HomePage = React.lazy(() => import("./pages/HomePage"));
-const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
-const ContactPage = React.lazy(() => import("./pages/ContactPage"));
-const DashboardPage = React.lazy(() => import("./pages/DashboardPage"));
+import HomePage from './pages/HomePage';
+import AuthorizationPage from './pages/AuthorizationPage';
+import ContactPage from './pages/ContactPage';
+import DashboardPage from './pages/DashboardPage';
 
 const App: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
@@ -24,7 +24,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Menu />} />
           <Route path="/home" element={ <HomePage />} />
-          <Route path='/register' element={ <RegisterPage/> } />
+          <Route path='/authorization' element={ <AuthorizationPage/> } />
           <Route path='/contact' element={ <ContactPage/> } />
           <Route path='/dashboard' element={ <DashboardPage/> } />
         </Routes>
