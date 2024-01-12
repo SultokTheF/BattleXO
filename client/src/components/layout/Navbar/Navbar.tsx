@@ -30,10 +30,14 @@ const Navbar:React.FC = () => {
         </div>
 				<div>
 					<ul className="nav-links">
-						<li><a className="navLink" data-name="about" href="#about">about</a></li>
-						<li><a className="navLink" data-name="experience" href="#experience">experience</a></li>
-						<li><a className="navLink" data-name="projects" href="#projects">projects</a></li>
-						<li><a className="navLink" data-name="contact" href="#contact">contact</a></li>
+						<li><a className="navLink" href="/liderboard">Liderboard</a></li>
+						<li><a className="navLink" href="/games">Find game</a></li>
+						<li><a className="navLink" href="/chat">Chat</a></li>
+						<li>
+              <div className="navButtons">
+                <a className="btn">Login</a>
+              </div>
+            </li>
 					</ul>
 				</div>
 			</nav>

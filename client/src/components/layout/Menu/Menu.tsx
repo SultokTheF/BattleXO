@@ -31,13 +31,13 @@ const Menu: React.FC = () => {
             <h1 data-name="start"><Link to="/register">start</Link></h1>
           </li>
           <li className="menu-link">
-            <h1 data-name="dashboard"><Link to="/dashboard">dashboard</Link></h1>
+            <h1 data-name="profile"><Link to="/profile">profile</Link></h1>
           </li>
           <li className="menu-link">
-            <h1 data-name="contact"><Link to="/contact">contact</Link></h1>
+            <h1 data-name="liderboard"><Link to="/liderboard">liderboard</Link></h1>
           </li>
           <li className="menu-link">
-            <h1 data-name="home"><Link to="/home">home</Link></h1>
+            <h1 data-name="chat"><Link to="/chat">chat</Link></h1>
           </li>
         </ul>
       </div>

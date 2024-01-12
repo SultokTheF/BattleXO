@@ -49,28 +49,33 @@ li{
   align-items: center;
 }
 
-button {
+button, .btn {
 	border-radius: 20px;
-	border: 1px solid var(--primaryColor);
+	border: 2px solid var(--primaryColor);
 	background-color: var(--primaryColor);
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
+	color: var(--textColor);
+	/* font-size: 12px; */
+	/* font-weight: bold; */
 	padding: 12px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
 
+.btn:hover {
+	transition: .3s ease;
+	background-color: transparent;
+}
+
 button:active {
 	transform: scale(0.95);
 }
 
-button:focus {
+button:focus, .btn:hover {
 	outline: none;
 }
 
 button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	border-color: var(--textColor);
 }

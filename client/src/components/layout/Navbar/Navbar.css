@@ -19,16 +19,8 @@ nav {
   font-size: 1.5rem;
 }
 
-.navbar .logo {
-  font-size: 2rem;
-}
-
 .navbar .logo img{
 	height: 100px;
-}
-
-.navbar .logo:hover {
-  cursor: default;
 }
 
 .navbar ul{
@@ -36,46 +28,18 @@ nav {
 }
 
 .navbar .navLink {
-	/* font-size: 1rem; */
-	position: relative;
+	display: flex;
 	text-transform: uppercase;
 	transition: all 300ms ease;
 	width: fit-content;
 	cursor: pointer;
 }
+
 .navbar .navLink:hover {
-	transform: skew(10deg);
-}
-.navbar .navLink::before {
-	content: attr(data-name);
-	position: absolute;
-	top: 0;
-	left: -20px;
-	background: var(--bgcolor);
-	height: 3rem;
-	overflow: hidden;
-	transition: all 300ms ease;
-	padding-left: 20px;
-}
-.navbar .navLink:hover::before {
-	top: -30px;
-	left: 10px;
 	color: var(--primaryColor);
 }
 
-.navbar .navLink::after {
-	content: "";
-	height: 1px;
-	width: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background: var(--primaryColor);
-	transition: all 300ms ease;
-}
-
-.navbar .navLink:hover::after {
-	width: 120%;
-	outline: 5px solid var(--bgcolor);
+.navbar .navButtons {
+	/* border: 1px solid var(--primaryColor); */
+	margin-bottom: 5%;
 }
