@@ -1,10 +1,12 @@
 import React from "react";
-import { Contact } from "../modules/contact";
+import { Game } from "../modules/games";
 import { Loader } from "../components/ui";
+
+import { Navbar } from "../components/layout";
 
 import useDelayedLoading from "../services/useDelayedLoading";
 
-const ContactPage: React.FC = () => {
+const GamePage: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
 
   return (
@@ -13,11 +15,12 @@ const ContactPage: React.FC = () => {
           <Loader/>
       ) : (
         <>
-          <Contact/>
+          <Navbar/>
+          <Game/>
         </>
       )}
     </>
   );
 }
 
-export default ContactPage;
+export default GamePage;

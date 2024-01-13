@@ -6,13 +6,7 @@ import "./Menu.css";
 import logo from "../../../assets/images/BattleXO_Logo.png";
 import logo_on_hover from "../../../assets/images/BattleXO_Logo_On_Hover.png";
 
-import User from "../../../types/User";
-
-import useUserData from "../../../services/useUserData";
-
 const Menu: React.FC = () => {
-  const userData = useUserData();
-
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseOver = () => {
@@ -34,22 +28,11 @@ const Menu: React.FC = () => {
         />
 
         <ul>  
-          {localStorage.getItem("accessToken") ? (
-            <>
-              <li className="menu-link">
-                <h1 data-name="start"><Link to="/games">start</Link></h1>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="menu-link">
-                <h1 data-name="start"><Link to="/authorization">start</Link></h1>
-              </li>
-            </>
-          )}
-          
           <li className="menu-link">
-            <h1 data-name="profile"><Link to="/profile">profile</Link></h1>
+            <h1 data-name="start"><Link to="/games">start</Link></h1>
+          </li>
+          <li className="menu-link">
+            <h1 data-name="profile"><Link to="/user/profile">profile</Link></h1>
           </li>
           <li className="menu-link">
             <h1 data-name="liderboard"><Link to="/liderboard">liderboard</Link></h1>

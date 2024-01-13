@@ -10,8 +10,9 @@ import useDelayedLoading from './services/useDelayedLoading';
 // Pages 
 import HomePage from './pages/HomePage';
 import AuthorizationPage from './pages/AuthorizationPage';
-import ContactPage from './pages/ContactPage';
-import DashboardPage from './pages/DashboardPage';
+import ProfilePage from './pages/ProfilePage';
+
+import GamePage from './pages/GamePage';
 
 const App: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
@@ -25,8 +26,9 @@ const App: React.FC = () => {
           <Route path="/" element={<Menu />} />
           <Route path="/home" element={ <HomePage />} />
           <Route path='/authorization' element={ <AuthorizationPage/> } />
-          <Route path='/contact' element={ <ContactPage/> } />
-          <Route path='/dashboard' element={ <DashboardPage/> } />
+          <Route path='/user/profile' element={ <ProfilePage/> } />
+        
+          <Route path='/game/:id' element={ <GamePage/> } />
         </Routes>
       )}
     </Suspense>

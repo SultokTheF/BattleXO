@@ -1,10 +1,12 @@
 import React from "react";
-import { Dashboard } from "../modules/dashboard";
+import { Profile } from "../modules/user";
 import { Loader } from "../components/ui";
+
+import { Navbar } from "../components/layout";
 
 import useDelayedLoading from "../services/useDelayedLoading";
 
-const DashboardPage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
 
   return (
@@ -13,11 +15,12 @@ const DashboardPage: React.FC = () => {
           <Loader/>
       ) : (
         <>
-          <Dashboard/>
+          <Navbar/>
+          <Profile/>
         </>
       )}
     </>
   );
 }
 
-export default DashboardPage;
+export default ProfilePage;
