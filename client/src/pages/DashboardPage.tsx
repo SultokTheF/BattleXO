@@ -2,7 +2,7 @@ import React from "react";
 import { Dashboard } from "../modules/dashboard";
 import { Loader } from "../components/ui";
 
-import useDelayedLoading from "../helpers/useDelayedLoading";
+import useDelayedLoading from "../services/useDelayedLoading";
 
 const DashboardPage: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);

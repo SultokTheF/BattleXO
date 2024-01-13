@@ -4,7 +4,7 @@ import { Loader } from "../components/ui";
 
 import { Navbar } from "../components/layout";
 
-import useDelayedLoading from "../helpers/useDelayedLoading";
+import useDelayedLoading from "../services/useDelayedLoading";
 
 const HomePage: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);

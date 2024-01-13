@@ -5,7 +5,7 @@ import { Menu } from "./components/layout";
 import { Loader } from "./components/ui";
 
 // Helpers
-import useDelayedLoading from './helpers/useDelayedLoading';
+import useDelayedLoading from './services/useDelayedLoading';
 
 // Pages 
 import HomePage from './pages/HomePage';

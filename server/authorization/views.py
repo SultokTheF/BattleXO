@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.views import TokenObtainPairView
+# from rest_framework_simplejwt.views import TokenObtainPairView
 
 # Dependencies
 from .models import *
@@ -50,10 +50,10 @@ class UserAPIView(APIView):
     return Response(serializer.data, status=status.HTTP_200_OK)
   
 
-class CustomTokenObtainPairView(TokenObtainPairView):
-    def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)
-        if response.status_code == 200:
-            access_token = response.data['refresh']
-            response.set_cookie(key='refreshToken', value=access_token, httponly=True)
-        return response
+# class CustomTokenObtainPairView(TokenObtainPairView):
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+#         if response.status_code == 200:
+#             access_token = response.data['refresh']
+#             response.set_cookie(key='refreshToken', value=access_token, httponly=True)
+#         return response

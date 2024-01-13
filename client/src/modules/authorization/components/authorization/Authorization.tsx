@@ -1,5 +1,6 @@
 import React, { useState ,useEffect, FormEvent } from "react";
-import axios from "axios"
+import axios from "axios";
+import Cookies from 'js-cookie';
 
 import "./Authorization.css";
 
@@ -90,7 +91,9 @@ const Authorization: React.FC = () => {
 
       if (response.status === 200) {
         const accessToken = response.data.access;
+        const refreshToken = response.data.refresh;
         localStorage.setItem("accessToken", accessToken);
+        Cookies.set('refreshToken', refreshToken, { expires: 30 });
         // You can redirect the user or perform other actions here
         alert("Login successful")
       } else {

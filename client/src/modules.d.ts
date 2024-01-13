@@ -22,3 +22,8 @@ declare module 'aos' {
   const value: any;
   export = value;
 }
+
+declare module 'js-cookie'; {
+  const value: any;
+  export = value;
+}
