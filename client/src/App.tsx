@@ -7,7 +7,7 @@ import { Loader } from "./components/ui";
 import store from './store';
 
 // Helpers
-import useDelayedLoading from './services/useDelayedLoading';
+import useDelayedLoading from './hooks/useDelayedLoading';
 
 // Pages 
 import HomePage from './pages/HomePage';

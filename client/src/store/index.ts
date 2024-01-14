@@ -1,5 +1,5 @@
 import { createStore, combineReducers, Store } from 'redux';
-import userReducer from './reducers/userReducers';
+import userReducer from './reducers/userReducer';
 
 // Define the RootState
 interface RootState {

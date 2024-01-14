@@ -4,7 +4,7 @@ import { Loader } from "../components/ui";
 
 import { Navbar } from "../components/layout";
 
-import useDelayedLoading from "../services/useDelayedLoading";
+import useDelayedLoading from "../hooks/useDelayedLoading";
 
 const GamePage: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
