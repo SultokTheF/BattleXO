@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import "./Authorization.css";
 
 import User from "../../../../types/User";
-import { loginEndpoint, registerEndpoint } from "../../../../store/endpoints";
+import { loginEndpoint, registerEndpoint } from "../../../../constants/endpoints";
 
 import logo from "../../../../assets/images/BattleXO_Logo.png";
 import logo_on_hover from "../../../../assets/images/BattleXO_Logo_On_Hover.png";

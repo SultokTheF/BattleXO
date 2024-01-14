@@ -1,8 +1,10 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import { Menu } from "./components/layout";
 import { Loader } from "./components/ui";
+import store from './store';
 
 // Helpers
 import useDelayedLoading from './services/useDelayedLoading';
@@ -18,20 +20,22 @@ const App: React.FC = () => {
   const loading = useDelayedLoading(0, 1000);
 
   return (
-    <Suspense fallback={<Loader />}>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<Menu />} />
-          <Route path="/home" element={ <HomePage />} />
-          <Route path='/authorization' element={ <AuthorizationPage/> } />
-          <Route path='/user/profile' element={ <ProfilePage/> } />
-        
-          <Route path='/game/:id' element={ <GamePage/> } />
-        </Routes>
-      )}
-    </Suspense>
+    <Provider store={store}>
+      <Suspense fallback={<Loader />}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Menu />} />
+            <Route path="/home" element={ <HomePage />} />
+            <Route path='/authorization' element={ <AuthorizationPage/> } />
+            <Route path='/user/profile' element={ <ProfilePage/> } />
+          
+            <Route path='/game/:id' element={ <GamePage/> } />
+          </Routes>
+        )}
+      </Suspense>
+    </Provider>
   );
 };
 

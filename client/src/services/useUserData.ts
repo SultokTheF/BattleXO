@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import { userValidateEndpoint, tokenRefreshEndpoint } from '../store/endpoints';
+import { userValidateEndpoint, tokenRefreshEndpoint } from '../constants/endpoints';
 import User from '../types/User';
 
 const useUserData = () => {
