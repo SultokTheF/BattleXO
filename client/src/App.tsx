@@ -13,6 +13,7 @@ import useDelayedLoading from './hooks/useDelayedLoading';
 import HomePage from './pages/HomePage';
 import AuthorizationPage from './pages/AuthorizationPage';
 import ProfilePage from './pages/ProfilePage';
+import ChatPage from './pages/ChatPage';
 
 import GamePage from './pages/GamePage';
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
             <Route path="/home" element={ <HomePage />} />
             <Route path='/authorization' element={ <AuthorizationPage/> } />
             <Route path='/user/profile' element={ <ProfilePage/> } />
+            <Route path='/chat' element={ <ChatPage/> } />
           
             <Route path='/game/:id' element={ <GamePage/> } />
           </Routes>

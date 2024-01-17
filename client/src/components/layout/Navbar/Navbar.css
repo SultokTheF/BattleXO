@@ -4,9 +4,14 @@ nav,
 }
 
 nav {
+	background-color: var(--bgcolor);
   justify-content: space-around;
   align-items: center;
   height: 17vh;
+}
+
+.navbar {
+	background-color: var(--bgcolor);
 }
 
 .navbar ul{
