@@ -29,7 +29,6 @@ INSTALLED_APPS = [
 
     #apps
     "authorization.apps.AuthorizationConfig",
-    "app.apps.AppConfig",
 
     #libs
     "rest_framework",
