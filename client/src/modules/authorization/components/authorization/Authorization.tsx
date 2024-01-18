@@ -55,7 +55,7 @@ const Authorization: React.FC = () => {
     email: "",
     role: "user",
     user_level: 1,
-    password: ""
+    password: "",
   });
 
   const handleRegister = async (e: FormEvent) => {

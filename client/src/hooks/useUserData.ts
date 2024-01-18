@@ -6,7 +6,7 @@ import { userValidateEndpoint, tokenRefreshEndpoint } from '../constants/endpoin
 import User from '../types/User';
 
 const useUserData = () => {
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<User & { profile_image: number } | null>(null);
 
   useEffect(() => {
     const axiosConfig = {

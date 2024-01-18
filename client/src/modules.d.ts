@@ -8,6 +8,11 @@ declare module "*.jpg" {
   export = value;
 }
 
+declare module "*.jpeg" {
+  const value: any;
+  export = value;
+}
+
 declare module "*.MOV" {
   const value: any;
   export = value;
