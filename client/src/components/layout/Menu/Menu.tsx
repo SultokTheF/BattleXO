@@ -35,7 +35,7 @@ const Menu: React.FC = () => {
             <h1 data-name="profile"><Link to="/user/profile">profile</Link></h1>
           </li>
           <li className="menu-link">
-            <h1 data-name="liderboard"><Link to="/liderboard">liderboard</Link></h1>
+            <h1 data-name="leaderboard"><Link to="/leaderboard">leaderboard</Link></h1>
           </li>
           <li className="menu-link">
             <h1 data-name="chat"><Link to="/chat">chat</Link></h1>
