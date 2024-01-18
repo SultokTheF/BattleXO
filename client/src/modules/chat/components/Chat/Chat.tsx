@@ -2,45 +2,47 @@ import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import io from "socket.io-client";
 
+import useUserData from "../../../../hooks/useUserData";
+import { chatEndpoint } from "../../../../constants/endpoints";
+
 const Chat: React.FC = () => {
+  const userData = useUserData();
+
   const [messages, setMessages] = useState<any[]>([]);
   const [inputMessage, setInputMessage] = useState<string>("");
 
   useEffect(() => {
-    // Connect to the Socket.IO server
-    const socket = io("http://127.0.0.1:8080/"); // Update with your server URL
+    const socket = io(chatEndpoint);
 
-    // Listen for incoming messages
     socket.on("chatMessage", (message: any) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
-    // Load previous messages on component mount
     socket.on("loadMessages", (loadedMessages: any) => {
       setMessages(loadedMessages);
     });
 
-    // Cleanup on component unmount
     return () => {
       socket.disconnect();
     };
-  }, []); // Empty dependency array ensures this effect runs once on mount
+  }, []);
+
+  const isOwnMessage = (sender: string | undefined) => {
+    return sender === userData?.username;
+  };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Send the message to the server
     if (inputMessage.trim() !== "") {
       const newMessage = {
-        sender: "own",
-        message: inputMessage
+        sender: userData?.username,
+        message: inputMessage,
       };
 
-      // Emit the message to the server
-      const socket = io("http://127.0.0.1:8080/"); // Update with your server URL
+      const socket = io(chatEndpoint);
       socket.emit("chatMessage", newMessage);
 
-      // Clear the input field
       setInputMessage("");
     }
   };
@@ -51,13 +53,13 @@ const Chat: React.FC = () => {
         <div className="chat-msg">
           {messages.map((message, index) => (
             <div className="bubbleWrapper" key={index}>
-              <div className={`inlineContainer ${message.sender}`}>
-                <div className={`${message.sender}Bubble ${message.sender}`}>
+              <div className={`inlineContainer ${isOwnMessage(message.sender) ? "own" : "other"}`}>
+                <div className={`${isOwnMessage(message.sender) ? "own" : "other"}Bubble`}>
                   {message.message}
                 </div>
               </div>
-              <span className={message.sender}>
-                {message.timestamp} {/* Format the Date object */}
+              <span className={isOwnMessage(message.sender) ? "own" : "other"}>
+                {message.timestamp}
               </span>
             </div>
           ))}

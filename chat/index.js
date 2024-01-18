@@ -23,7 +23,7 @@ mongoose.connect(DB_URL, {
 // Initialize socket connection with CORS configuration for Socket.IO
 const io = socketIO(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
