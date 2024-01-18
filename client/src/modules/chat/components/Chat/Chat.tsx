@@ -33,13 +33,8 @@ const Chat: React.FC = () => {
     if (inputMessage.trim() !== "") {
       const newMessage = {
         sender: "own",
-        icon: "https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png",
-        message: inputMessage,
-        timestamp: new Date().toLocaleTimeString(),
+        message: inputMessage
       };
-
-      // Update the local state optimistically
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
 
       // Emit the message to the server
       const socket = io("http://127.0.0.1:8080/"); // Update with your server URL
@@ -57,12 +52,13 @@ const Chat: React.FC = () => {
           {messages.map((message, index) => (
             <div className="bubbleWrapper" key={index}>
               <div className={`inlineContainer ${message.sender}`}>
-                <img className="inlineIcon" src={message.icon} alt={`icon-${index}`} />
                 <div className={`${message.sender}Bubble ${message.sender}`}>
                   {message.message}
                 </div>
               </div>
-              <span className={message.sender}>{message.timestamp}</span>
+              <span className={message.sender}>
+                {message.timestamp} {/* Format the Date object */}
+              </span>
             </div>
           ))}
         </div>

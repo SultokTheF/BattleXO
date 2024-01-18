@@ -1,7 +1,7 @@
 const ChatModel = require('./models/chat');
 
-function initSocket(io) {
-  io.on('connection', (socket) => {
+async function initSocket(io) {
+  io.on('connection', async (socket) => {
     console.log('A user connected');
 
     // Listen for new messages
@@ -19,14 +19,13 @@ function initSocket(io) {
     });
 
     // Load previous messages from MongoDB
-    ChatModel.find().sort({ timestamp: 1 }).exec((err, messages) => {
-      if (err) {
-        console.error('Error loading messages:', err);
-      } else {
-        // Send previous messages to the connected client
-        socket.emit('loadMessages', messages);
-      }
-    });
+    try {
+      const messages = await ChatModel.find().sort({ timestamp: 1 });
+      // Send previous messages to the connected client
+      socket.emit('loadMessages', messages);
+    } catch (error) {
+      console.error('Error loading messages:', error);
+    }
 
     // Handle disconnection
     socket.on('disconnect', () => {
