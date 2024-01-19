@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
 import io from "socket.io-client";
 
@@ -11,22 +11,32 @@ const Chat: React.FC = () => {
 
   const [messages, setMessages] = useState<any[]>([]);
   const [inputMessage, setInputMessage] = useState<string>("");
+  
+  const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const socket = io(chatEndpoint);
 
     socket.on("chatMessage", (message: any) => {
       setMessages((prevMessages) => [...prevMessages, message]);
+      scrollToBottom();
     });
 
     socket.on("loadMessages", (loadedMessages: any) => {
       setMessages(loadedMessages);
+      scrollToBottom();
     });
 
     return () => {
       socket.disconnect();
     };
   }, []);
+
+  const scrollToBottom = () => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  };
 
   const isOwnMessage = (sender: string | undefined) => {
     return sender === userData?.username;
@@ -51,7 +61,7 @@ const Chat: React.FC = () => {
 
   return (
     <>
-      <div className="chat">
+      <div className="chat" ref={chatRef}>
         <div className="chat-msg">
           {messages.map((message, index) => (
             <div className="bubbleWrapper" key={index}>

@@ -79,3 +79,12 @@ button.ghost {
 	background-color: transparent;
 	border-color: var(--textColor);
 }
+
+::-webkit-scrollbar{
+	width: 10px;
+	background: var(--bgcolor);
+}
+::-webkit-scrollbar-thumb{
+	background: var(--primaryColor);
+	border-radius: 10px;
+}
