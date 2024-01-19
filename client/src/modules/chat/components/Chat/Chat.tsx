@@ -4,7 +4,7 @@ import io from "socket.io-client";
 
 import useUserData from "../../../../hooks/useUserData";
 import { chatEndpoint } from "../../../../constants/endpoints";
-import avatar from "../../../../constants/profile_iamge";
+import avatar from "../../../../constants/profile_image";
 
 const Chat: React.FC = () => {
   const userData = useUserData();
@@ -68,11 +68,13 @@ const Chat: React.FC = () => {
                   isOwnMessage(message.sender) ? "own" : "other"
                 }`}
               >
-                <img
-                  className="inlineIcon"
-                  src={avatar[message.profileImage]}
-                  alt={`icon-${index}`}
-                />
+                <a href={`user/profile/${message.sender}`}>
+                  <img
+                    className="inlineIcon"
+                    src={avatar[message.profileImage]}
+                    alt={`icon-${index}`}
+                  />
+                </a>
                 <div
                   className={`${isOwnMessage(message.sender) ? "own" : "other"}Bubble`}
                 >

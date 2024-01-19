@@ -30,7 +30,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Menu />} />
             <Route path="/home" element={ <HomePage />} />
             <Route path='/authorization' element={ <AuthorizationPage/> } />
-            <Route path='/user/profile' element={ <ProfilePage/> } />
+            <Route path='/user/profile/:username' element={ <ProfilePage/> } />
             <Route path='/chat' element={ <ChatPage/> } />
           
             <Route path='/game/:id' element={ <GamePage/> } />
