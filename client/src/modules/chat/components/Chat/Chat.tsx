@@ -8,23 +8,20 @@ import avatar from "../../../../constants/profile_iamge";
 
 const Chat: React.FC = () => {
   const userData = useUserData();
+  const messagesRef = useRef<HTMLDivElement>(null);
 
   const [messages, setMessages] = useState<any[]>([]);
   const [inputMessage, setInputMessage] = useState<string>("");
-  
-  const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const socket = io(chatEndpoint);
 
     socket.on("chatMessage", (message: any) => {
       setMessages((prevMessages) => [...prevMessages, message]);
-      scrollToBottom();
     });
 
     socket.on("loadMessages", (loadedMessages: any) => {
       setMessages(loadedMessages);
-      scrollToBottom();
     });
 
     return () => {
@@ -32,11 +29,12 @@ const Chat: React.FC = () => {
     };
   }, []);
 
-  const scrollToBottom = () => {
-    if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  useEffect(() => {
+    // Scroll to the bottom when messages update
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
     }
-  };
+  }, [messages]);
 
   const isOwnMessage = (sender: string | undefined) => {
     return sender === userData?.username;
@@ -49,7 +47,7 @@ const Chat: React.FC = () => {
       const newMessage = {
         sender: userData?.username,
         message: inputMessage,
-        profileImage: userData?.profile_image
+        profileImage: userData?.profile_image,
       };
 
       const socket = io(chatEndpoint);
@@ -61,13 +59,23 @@ const Chat: React.FC = () => {
 
   return (
     <>
-      <div className="chat" ref={chatRef}>
-        <div className="chat-msg">
+      <div className="chat">
+        <div className="chat-msg" ref={messagesRef}>
           {messages.map((message, index) => (
             <div className="bubbleWrapper" key={index}>
-              <div className={`inlineContainer ${isOwnMessage(message.sender) ? "own" : "other"}`}>
-                <img className="inlineIcon" src={avatar[message.profileImage]} alt={`icon-${index}`} />
-                <div className={`${isOwnMessage(message.sender) ? "own" : "other"}Bubble`}>
+              <div
+                className={`inlineContainer ${
+                  isOwnMessage(message.sender) ? "own" : "other"
+                }`}
+              >
+                <img
+                  className="inlineIcon"
+                  src={avatar[message.profileImage]}
+                  alt={`icon-${index}`}
+                />
+                <div
+                  className={`${isOwnMessage(message.sender) ? "own" : "other"}Bubble`}
+                >
                   {message.message}
                 </div>
               </div>
@@ -78,7 +86,7 @@ const Chat: React.FC = () => {
           ))}
         </div>
 
-        { localStorage.getItem("accessToken") ? (
+        {localStorage.getItem("accessToken") ? (
           <>
             <form className="msger-inputarea" onSubmit={handleSendMessage}>
               <input
@@ -101,7 +109,7 @@ const Chat: React.FC = () => {
               />
             </form>
           </>
-        ) }
+        )}
       </div>
     </>
   );
