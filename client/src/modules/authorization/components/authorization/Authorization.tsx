@@ -58,6 +58,9 @@ const Authorization: React.FC = () => {
     password: "",
   });
 
+  const [loginError, setLoginError] = useState("");
+  const [registerError, setRegisterError] = useState("");
+
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -76,9 +79,10 @@ const Authorization: React.FC = () => {
         alert("Registration successful");
       } else {
         // Handle registration error
-        alert("Registration failed")
+        setRegisterError("Something went wrong! Try later");
       }
     } catch (e) {
+      setRegisterError("Enter the unique credentials! Maybe this username is aready in use");
       return console.error("Error:", e);
     }
   };
@@ -97,10 +101,10 @@ const Authorization: React.FC = () => {
         // You can redirect the user or perform other actions here
         alert("Login successful")
       } else {
-        // Handle authentication error
-        alert("Authentication failed");
+        setLoginError("Something went wrong! Try later");
       }
     } catch (error) {
+      setLoginError("Invalid email or password!")
       console.error("Error during login:", error);
     }
   };
@@ -144,6 +148,9 @@ const Authorization: React.FC = () => {
                 value={userData.password}
                 onChange={(e) => setUserData({ ...userData, password: e.target.value })}
               />
+              <div className="error">
+                {registerError}
+              </div>
               <button>Sign Up</button>
             </form>
           </div>
@@ -168,7 +175,10 @@ const Authorization: React.FC = () => {
                 value={userData.password}
                 onChange={(e) => setUserData({ ...userData, password: e.target.value })}
               />
-              <a href="#">Forgot your password?</a>
+              <div className="error">
+                {loginError}
+              </div>
+              <a href="#signUp" className="link">Forgot your password?</a>
               <button>Login</button>
             </form>
           </div>

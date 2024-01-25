@@ -233,3 +233,13 @@
     cursor: not-allowed;
   }
 }
+
+.error {
+	color: red;
+	margin: 5%;
+}
+
+.link {
+	color: var(--primaryColor);
+	margin-bottom: 1%;
+}
